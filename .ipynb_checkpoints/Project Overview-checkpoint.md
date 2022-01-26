@@ -5,24 +5,65 @@
 ## Introduction
 ### Our Task 
 
-We are a new team within an investment firm looking to enter the CryptoCurrency space with a passively managed algorithmic trading package that performs better than the S&P for our clients. Due to limited resources management has tasked our team with building & testing a Time Series & Neutral Network model in order to predict future performance. Then evaluate our models and draw general conclusions based on our performance. 
+We are a new new Business group at a PA Asset Management firm tasked with leading the firms integration of Digital Assets with traditional investment porfolios. The firm is interested in exploring how two digital assets, Bitcoin & Eethereum, into its traditional investment stragegy for Conservative, Moderate, & Agressive pofilios. Our task is to recommend which & how much Digital Asset should be paied with each traditional porfolio risk profile. Susecuently, based on Market Data in the state recommend Markets to which these porfolios can be targeted too. 
 
 For this Analysis we will need to answer: 
-1. Identify commonly traded Crypto currencies with reliable data   
-2. Create an Recurring Neural Network in order to gain a signal to trade on
-3. Create a Regression Anlysis to in order to gain a signal to trade on
-4. Cominde the signals from step 2 & 3 in order to UPDATE
+1. Analyze the results of the last 5 years for a traditonal Conservative, Moderate, & Agressive Porfolio for a baseline. 
+2. Analyse the risk profile of Bitcoin & Eethereum: How do Ethereum and Bitcoin compare with the broader market, as represented by S&P500 Index?
+3. Recomend how much of each Digital Assets should be combined with each Traditonal profilio & anlayze the outcome 
+4. Anlayze Pennsylvania Census Data to recommend markets for each Porfolio 
 
 ---
 
 ## Data Sources 
 Data for this presentaion was found in three parts: 
-1. ETH data sourced from https://api.kucoin.com/api/v1/market/candles?type={frequency}&symbol={ticker}-USDT&startAt={epoch}&endAt=0&limit=10000
+1. We research the make up of Traditional Pofolios & incorprated assets that fit the risk profolio of each profilio. 
+* Conservative includes: BIV, BSV, VB, VV, VXUS
+* Moderate & Agressive include: BND, VB, VV, VWO, VXUS
+
+(Data Soruce API)
+
+2. Bitcoin & Eethereum choosen for thier breath of data & Name recongnition to novice digital investors 
+
+(Data Soruce from Google Finance for the last 5 years & saved as a CSV)
+3. S&P data from Google Finance 
+
+4. PA Market Data: Household Income Data Sourced from Kaggle pull from Census API
 ---
 
 ## Data Analysis
 
-### Part 1. Outcome of recurring 
+### Part 1. Analysis of the risk profiles of Bitcoin & Eethereum. 
+Location: Crypto_Analysis.ipynb
+1. Import  Libraries & Depencencies 
+2. Read and Process Bitcoin, Eethereum, & SPY Data. Steps include: Setting the path, sorting the index, organizing close prices by date, preparing multi level index for monte Carlo Anlaysis
+3. Calculate & Plot Daily Returns for each (Line Chats)
+![ETH DR](ETHDailyReturns.jpeg)
+![BTC DR](BTCDailyReturns.jpeg)
+![SPY DR](SPYDailyReturns.jpeg)
+4. Prepare a Pandas Dataframes for Concatenation of Daily Returns 
+5. Blend Bitcoin & Eethereum with S&P, then prepare a Box Plot of Daily Returns
+![Box Plot](BoxPlotDailyReturnDigital.jpeg)
+6. Calculate and Plot Rolling 1y Volatility Plots using standard deviation function
+![STD Plot](1yrRollingSTD.jpeg)
+7. Calculate Cumulative Returns & Plot 
+![total return](Cumulativereturns.jpeg)
+8. Calculate Rolling Three Month Betas & Plot 
+![3m rolling ETH SPY](3mRollingBetaETH&SPY.jpeg)
+![3m rolling BTC&SPY](3mRollingBetaBTC&SPY.jpeg)
+![3m rolling Agressive](3MRollingBetaAgressiveSPYETH&SPYBeta.jpeg)
+![3m Rolling Agressive](3MRollingBetaModerate&SPY.jpeg)
+9. Using a Monte Carlo Anlaysis perform a one year projection of Ethereum. Plot Daily Returns of the simulation. Then simulate behavior of a $10,000 Inbvestment & Plot Returns
+![1yr DR ETH](FinalSimulatedDailyReturnsBehaviprofETHovernextyear.jpeg)
+![10k 1 yr returns ETH](SimulatedReturnsETH10k.jpeg)
+10. Using a Monte Carlo Anlaysis perform a one year projection of S&P. Plot Daily Returns of the simulation. Then simulate behavior of a $10,000 Inbvestment & Plot Returns.
+![1yrDRSPY](SimulatedDailyReturnsofSPYnext year.jpeg)
+![10k 1 yr returns SPY](10kInvestSPYSimulation.jpeg)
+11. Using a Monte Carlo Anlaysis perform a one year projection of Bitcoin. Plot Daily Returns of the simulation. Then simulate behavior of a $10,000 Inbvestment & Plot Returns.
+![1yr DR BTC](SimulatedDRBTCoverthenextyear.jpeg)
+![10k 1 yr returns BTC](10KSimulatedReturnsBTC.jpeg)
+12. Analysis of outcomes 
+![Adnan results](Adnantable.jpeg)
 
 #### Part 2. Anlysis of Traditional Pofolios 
 Location: project_1_all_portfolios.ipynb
