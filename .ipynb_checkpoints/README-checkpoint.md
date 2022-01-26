@@ -25,13 +25,10 @@ Data for this presentaion was found in three parts:
 ### Part 1. Outcome of recurring Neural Network 
 Location: .ipynb
 
-#### Part 2. Anlysis of Traditional Pofolios 
+#### Part 2. Anlysis of Time Series: Regression
 Location: .ipynb
 
-## Part 3. Anlysis of Combined Porfolios
-Location: .ipynb
-
-## Part 4. Anlysis of PA Household Income Data
+## Part 3. Anlysis of combined signals
 Location: .ipynb
 
 --- 
