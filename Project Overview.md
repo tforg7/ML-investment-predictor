@@ -22,100 +22,32 @@ Data for this presentaion was found in three parts:
 
 ## Data Analysis
 
-### Part 1. Outcome of recurring 
+### Part 1. Outcome of recurring Neural Network 
+Location: .ipynb
 
 #### Part 2. Anlysis of Traditional Pofolios 
-Location: project_1_all_portfolios.ipynb
-1. Import  Libraries & Depencencies, Load .env variables, Set alpaca key and Secret key
-2. Set weigths of a Conservative Moderate & Aggresive porfolios 
-3. Run a Monte Carolo Simulation of a Conservative Porfolio: Plot Returns & Note Summary Statistics
-![CON MCline](ConservMCLine.jpeg)
-![Con MCDis](ConservMCdis.jpeg)
-![Con MCSS](SummarystatsCONSMC.jpeg)
-4. Run a Monte Carolo Simulation of a Moderate Porfolio: Plot Returns & Note Summary Statistics
-![MOD MCline](MODMCLine.jpeg)
-![MOD MCDis](MODMCDIS.jpeg)
-![MOD MCSS](MODMCSS.jpeg)
-5. Run a Monte Carolo Simulation of a Agressive Porfolio: Plot Returns & Note Summary Statistics
-![Agr MCline](AgressMCLine.jpeg)
-![ARG MCDis](AggresMCDis.jpeg)
-![ARG MCSS](AgressMCSS.jpeg)
-6. Calculate & Plot Returns of each simulation
-![Con por](Aggressiveporfolioreturns.jpeg)
-![MOD poris](Moderateporfolioreturns.jpeg)
-![ARG por](Aggressiveporfolioreturns.jpeg)
-7. Calulate Porfolio Betas & Sharpe Ratios 
-8. Summarize Benchmark Statistics 
+Location: .ipynb
+
 ## Part 3. Anlysis of Combined Porfolios
-Location: project_1_all_portfolios.ipynb
-1. From the end of the analysis in PArt 1 Combine data gathered for digital assets in part 2 with the porfolios in part 1. 
-* Set Porfolio weights 
-* Clean data to show close prices 
-2. Define assets and weights for conservative portfolio with 2% digital assets
-3. Define assets and weights for moderate portfolio with 5% digital assets
-4. Define assets and weights for aggressive portfolio with 10% digital assets
-5. Find cumulative returns for all 3 portfolios with digital assets
-![COM AG](Combinedagress.jpeg)
-![COM MOD](Combinedmod.jpeg)
-![COMB CON](Combinedcons.jpeg)
-6. Run a Monte Carolo Simulation of a Conservative Porfolio: Plot Returns & Note Summary Statistics
-![Crypto con MCline](CryptocombinedMCline.jpeg)
-![Crypto con CDis](CryptocombinedMCdis.jpeg)
-![Crypto con MCSS](CryptocombinedMClSS.jpeg)
-
-7. Run a Monte Carolo Simulation of a Moderate Porfolio: Plot Returns & Note Summary Statistics
-![MOD CZR MCline](MODCRMCLINE.jpeg)
-![MOD CR MCDis](MODCRMCDIS.jpeg)
-![MOD CR MCSS](MODCRMCDD.jpeg)
-8. Run a Monte Carolo Simulation of a Agressive Porfolio: Plot Returns & Note Summary Statistics
-
-![Agr CR MCline](CRAGRESSMCLINE.jpeg)
-![ARG MCDis](CRAGRESSMCDIS.jpeg)
-![ARG MCSS](CRAGRESSMCSS.jpeg)
-9. Find Beta and Sharpe Ratios for all portfolios
-![Mike Table](Miketable.jpeg)
+Location: .ipynb
 
 ## Part 4. Anlysis of PA Household Income Data
-Location: PA Household Income by City.ipynb
-1. Import  Libraries & Depencencies, Load .env variables, Set alpaca key and Secret key
-2. Loadin in Census Data sourced from Kaggle 
-3. Creat a Mapbox Plot to visulatize the Market Data. 
-![Map Box PA](MapboxPA.jpeg)
+Location: .ipynb
 
 --- 
 
 ## Conclusions & Results 
-Based on our analysis our recomendations for integrating digital assets into traditional investment profilios are as follows: Conservative 2% digital, Moderate 5% digital, Agressive 10% digital. 
+Based on our analysis our recomendations for 
 
-Test Results 
-Results: Average yearly returns
-* Conservative +6.9%
-* Moderate +13.3%
-* Agressive +22.1%
+Test Results
 
-Results: Monte Carlo Ratio
-* Conservative +3.0%
-* Moderate +7.5%
-* Agressive +12.2%
 
-Results: Beta change
-* Conservative +.26
-* Moderate +1.0
-* Agressive +1.7
-
-Results: Sharpe Ratio change
-* Conservative +.36
-* Moderate +.55
-* Agressive +.87 (1)
-
-Note: unexpected result that the sharpe ratio of an agressive digital belended portfolio produced a higher Sharpe Ratio)
-
-After combining the digital assets with traditional investment porfolios we found that digital assets raised the average yearly returns as expected. The results of a 1 year forward looking Monte Carlo simulation confimed these results. Based on the volitility metrics, the digital assets increased risk and volitlity substantially for conservative and moderate investors. Therefore, the firm should target an agressive investor, with a high risk tolerance, with a higher beta traditonal portfolio combined with a higher allocation (10%) digital assets. Based on the Greater Philadelphia Market household income data our firm will be tageting indiviuals in the citys of Philadelphia, West Chester, Ardmore, and Wayne as they have the largest average hosuehold incomes. Assumption being that households with higher incomes have higher savings. Therefore these households will have a higher risk tolorence.
+After combining 
 
 ---
 
 ## Implications 
-In a real life scienero not all investors are the same. Thus they will not always follow the exact risk profilie identified in this analysis. An example of this could be a traditonal agressive investor that wants to get into the digital asset market. When presented with the outcomes of our analysis they decide that the increased risk is not worth the increased return. But, we could pitch to this individual that he/she can achive similar returns for less risk & be in the digital asset market by choosing the conservative profolio integrated with digital assets. Which has compareable returns but lowers risk while postioning them in the digital market. 
+In a real life scienero: 
 
 
 
