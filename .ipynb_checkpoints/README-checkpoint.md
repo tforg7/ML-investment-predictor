@@ -25,10 +25,59 @@ Data for this presentaion was found in three parts:
 ### Part 1. Outcome of recurring Neural Network 
 Location: .ipynb
 
-#### Part 2. Anlysis of Time Series: Regression
+### Part 2. Anlysis of Time Series Regression
+Objective complete a regression analysis in order to gain a buy/sell signal to combine with the Neural Network Signal
+
 Location: .ipynb
 
-## Part 3. Anlysis of combined signals
+Steps 
+1. Inital Imports
+2. feed in Ethereum data as: 'Hour', 'Opening_price',  'Closing_price' , 'Highest_price' , 'Lowest_price' , 'Transaction_volume' ,  'Transaction_amount'
+3. Complete a Hodrick-Prescott Filter in order to filter out short-term fluctuations & decompose the time series into trend and non-trend componets 
+![Trend](HP_trend.jpeg)
+![noise](HP_noise.jpeg)
+4. Regression Analysis: Seasonal Effects with Sklearn Linear Regression
+    
+    A. Data Preparation
+    
+    B.Lagged Returns
+
+    C.Train Test Split
+
+    D.Linear Regression Model
+
+5. Make predictions using the Testing Data
+![noise](rg.jpeg)
+
+6. Out-of-Sample Performance = "Out-of-Sample Root Mean Squared Error (RMSE): 1.08"
+
+7. In-Sample Performance = "In-sample Root Mean Squared Error (RMSE): 0.82"
+
+8. Create a Dataframe with Hours as the index & predicted returns 
+
+    A. Calculate the differnce between prior hour and current hour predicted returns 
+
+9. Create a signal based on the difference in hourly predicted returns where a difference greater than or equal to zero is a buy and less that zero is a sell
+
+10. Signal is now completed
+
+11. Note for implications: Additonal backtesting can be done by calulating: Entry/Exit, Position, Entry/Exit Position, Portfolio Holdings, Portfolio Cash, Portfolio Total,	Portfolio Daily Returns,Portfolio Cumulative Returns
+
+12. Below are the actual vs predicted backtesting results
+    
+    ACT:
+    
+    ![ACTBT](ACTBT.jpeg)
+
+    Predicted: 
+
+     ![PREBT](PREBT.jpeg)
+
+
+## Part 3. Anlysis of Combined Porfolios
+Location: .ipynb
+
+## Part 4. Anlysis of PA Household Income Data
 Location: .ipynb
 
 --- 
