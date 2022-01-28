@@ -204,7 +204,7 @@ Below are the steps to estabish back testing code.
 
 
 11. Summarized statistics 
-![ratio](hold.jpeg)
+![ratio](Hold.jpeg)
 
 12. Create a evaluation dataframe to evaluate the profit and loss of each transaction 
     A.  # Initialize trade evaluation DataFrame 
