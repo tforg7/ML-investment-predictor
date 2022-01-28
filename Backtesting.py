@@ -97,6 +97,7 @@ class BacktestingSimulation:
     
     
     
+    
     def visual_portfolio(self):
         """
         Define a function that make a time dependant vizualisation of the potfolio using the return of function 'portfolio_returns'
@@ -108,7 +109,7 @@ class BacktestingSimulation:
 
 
         # Visualize exit position relative to total portfolio value
-        exit = self.simulated_returns[self.simulated_returns['Entry/Exit Position'] == -1.0]['Portfolio Total'].hvplot.scatter(
+        exit = self.simulated_returns[self.simulated_returns['Entry/Exit Position'] == -self.share_size]['Portfolio Total'].hvplot.scatter(
             color='yellow',
             marker='v',
             legend=False,
@@ -118,10 +119,11 @@ class BacktestingSimulation:
         )
 
         # Visualize entry position relative to total portfolio value
-        entry = self.simulated_returns[self.simulated_returns['Entry/Exit Position'] == 1.0]['Portfolio Total'].hvplot.scatter(
+        entry = self.simulated_returns[self.simulated_returns['Entry/Exit Position'] == self.share_size]['Portfolio Total'].hvplot.scatter(
             color='purple',
             marker='^',
             ylabel='Total Portfolio Value',
+            legend=False,
             width=1000,
             height=400
         )
@@ -246,13 +248,13 @@ class BacktestingSimulation:
             # Else if `Entry/Exit` is -1, set exit trade metrics and calculate profit
             # Then append the record to the trade evaluation DataFrame
         for index, row in self.simulated_returns.iterrows():
-            if row["Entry/Exit Position"] == 500:
+            if row["Entry/Exit Position"] == self.share_size:
                 entry_date = index
                 entry_portfolio_holding = row["Portfolio Holdings"]
                 share_size = row["Entry/Exit Position"]
                 entry_share_price = row["Real_Closing"]
 
-            elif row["Entry/Exit Position"] == -500:
+            elif row["Entry/Exit Position"] == -self.share_size:
                 exit_date = index
                 exit_portfolio_holding = abs(row["Real_Closing"] * row["Entry/Exit Position"])
                 exit_share_price = row["Real_Closing"]
