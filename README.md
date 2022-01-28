@@ -145,25 +145,47 @@ Location: PredictionsModels_n_Signal_BRK.ipynb
 
     * Finally look at the condition when a hold is needed due to no change in the signal from the previous time point
 7. Test Final Signal
+![bokeh](bokeh_plot.jpeg)
 ----
 ## Part 4. Backtesting 
+
+![ratio](hold.jpeg)
+
 Location: .ipynb
 
 --- 
 
 ## Conclusions & Results 
-Based on our analysis our recomendations for 
 
 Test Results
 
+After merging the signals from the indiviual models we executed a model using an inital investment of $10,000,000 and a share size of 50. Here are our results:
 
-After combining 
+Annualized return of 0.4% outperformed the indivual Time Serier Regression, LSTM models, and buy and hold position. 
+
+Cummulative Returns of 0.5% outperformed the indivual Time Serier Regression, LSTM models, and buy and hold position. 
+
+Annual Volatility of 1.67% resulted in the less volatility than the indivual Time Serier Regression, LSTM models, and buy and hold position. 
+
+Sharpe ratio of .28 resulted in a greater return when compared to the risk free rate than the indivual Time Serier Regression, LSTM models, and buy and hold position. 
+
+Sortino ratio of .44 resulted in a greater return when taking into account only the down side risk of our investment than the indivual Time Serier Regression and LSTM models. 
+
+Overall after analysing the back testing results our recomendation is to not go to market with our model in its current state. Our results, while sufficent when compared to our indicual models, do not result in enough confidence/overal return to provide greater value to clients. 
 
 ---
 
 ## Implications 
 In a real life scienero: 
-with more time --> more signals 
 
+* Explore the use of indicators to better refine our models. 
+* Incorporating weights in the way we calculate our signals 
+* Use different metrics for determining our signals
+* Explored using less volitile assets such as stock or bonds. 
+* Exploring was to automate how to change the amount sold in each transaction 
+* Using a larger data set 
+* Using days instead of Hours. Hours were used to filter out dip in 2020. 
 
+* Potential Future State: Incorporating Indicators & Natural Language Processing 
+![Thomas's Genius](model.jpeg)
 
