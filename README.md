@@ -34,8 +34,8 @@ Steps
 1. Inital Imports
 2. feed in Ethereum data as: 'Hour', 'Opening_price',  'Closing_price' , 'Highest_price' , 'Lowest_price' , 'Transaction_volume' ,  'Transaction_amount'
 3. Complete a Hodrick-Prescott Filter in order to filter out short-term fluctuations & decompose the time series into trend and non-trend componets 
-![Trend](HP_trend.jpeg)
-![noise](HP_noise.jpeg)
+![Trend](TR.jpeg)
+![noise](N_O.jpeg)
 4. Regression Analysis: Seasonal Effects with Sklearn Linear Regression
     
     A. Data Preparation
@@ -47,7 +47,7 @@ Steps
     D.Linear Regression Model
 
 5. Make predictions using the Testing Data
-![noise](rg.jpeg)
+![noise](Pre.jpeg)
 
 6. Out-of-Sample Performance = "Out-of-Sample Root Mean Squared Error (RMSE): 1.08"
 
@@ -62,16 +62,6 @@ Steps
 10. Signal is now completed
 
 11. Note for implications: Additonal backtesting can be done by calulating: Entry/Exit, Position, Entry/Exit Position, Portfolio Holdings, Portfolio Cash, Portfolio Total,	Portfolio Daily Returns,Portfolio Cumulative Returns
-
-12. Below are the actual vs predicted backtesting results
-    
-    ACT:
-    
-    ![ACTBT](ACTBT.jpeg)
-
-    Predicted: 
-
-     ![PREBT](PREBT.jpeg)
 
 
 ## Part 3. Anlysis of Combined Porfolios
