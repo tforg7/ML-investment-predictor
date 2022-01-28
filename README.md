@@ -149,9 +149,84 @@ Location: PredictionsModels_n_Signal_BRK.ipynb
 ----
 ## Part 4. Backtesting 
 
+Location backtesting code was established in a seperate workbook "Backtesting.py" then summarized in "PredictionsModels_n_Signal_BRK.ipynb"
+
+Below are the steps to estabish back testing code. 
+
+1. Create Datframe with Predicted Returns, Difference, and Singal
+
+2. Calculate the Entry/Exit position 
+
+3. Calculate evaluation metrics and add them to the dataframe 
+    A. Set initial capital
+
+    B. Set the share size
+
+    C. Multiply the close price by the number of shares held, or the Position
+
+    D.Subtract the amount of either the cost or proceeds of the trade from the initial capital invested
+
+    E. Calculate the total portfolio value by adding the portfolio cash to the portfolio holdings (or investments)
+
+    F. Calculate the portfolio daily returns
+
+    G. Calculate the portfolio cumulative returns
+
+    H. Print to check Dataframe
+
+4. Create an hvplot to Visualize the Dataframe 
+
+    A. Visualize exit position relative to total portfolio value
+
+    B. Visualize entry position relative to total portfolio value
+
+    C. Visualize the value of the total portfolio
+
+    D. Overlay the plots
+
+    E. Plot
+
+5. Create a dataframe of summary statistics 
+    "Annualized Return",
+    "Cumulative Returns",
+    "Annual Volatility",
+    "Sharpe Ratio",
+    "Sortino Ratio"
+6. Calculate annualized return
+
+7. Calculate cumulative return
+
+8. Calculate annual volatility
+
+9. Calculate Sharpe ratio
+
+10. Calculate Sortino ratio 
+
+
+11. Summarized statistics 
 ![ratio](hold.jpeg)
 
-Location: .ipynb
+12. Create a evaluation dataframe to evaluate the profit and loss of each transaction 
+    A.  # Initialize trade evaluation DataFrame 
+        "CURRENCY",
+        "Entry Date",
+        "Exit Date",
+        "Shares",
+        "Entry Share Price",
+        "Exit Share Price",
+        "Entry Portfolio Holding",
+        "Exit Portfolio Holding",
+        "Profit/Loss"
+    
+    B. # Loop through signal DataFrame. 
+    
+    C. If Entry/Exit is 1, set entry trade metrics Else if Entry/Exit is -1, set exit trade metrics and calculate profit. 
+    
+    D.Then append the record to the trade evaluation DataFrame
+
+    C. Print to check dataframe 
+
+13. Summarized backtesting in "PredictionsModels_n_Signal_BRK.ipynb"
 
 --- 
 
