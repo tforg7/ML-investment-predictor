@@ -227,7 +227,7 @@ Below are the steps to estabish and perform backtesting.
 
 ### Test Results:
 
-After merging the signals from the indiviual models we executed a model using an inital investment of $10,000,000 and a share size of 50. Here are our results:
+After merging the signals from the indiviual models we executed a model using an initial investment of $10,000,000 and a share size of 50. Here are our results:
 
 * Annualized return (0.4%) and cumulative return (0.5%) of the combined signal model outperformed the individual Time Series Regression, LSTM model, and buy and hold position. Although the combined signal model outperformed the others, its returns are very low, without taking into account transaction costs.
 
@@ -237,7 +237,7 @@ After merging the signals from the indiviual models we executed a model using an
 
 * Sortino ratio of 0.44 resulted in a greater return when taking into account only the down side risk of our investment than the individual Time Series Regression, LSTM model, and buy and hold position.
 
-Overall after analysing the back testing results, our recomendation is to not go to market with our combined signal model in its current state. Our results, while sufficent when compared to our individual models, does not result in enough confidence or overall return to provide great value to clients. Further development, tuning, and testing of the model is required in order to release teh product to our clients.
+Overall after analysing the back testing results, our recomendation is to not go to market with our combined signal model in its current state. Our results, while sufficent when compared to our individual models, does not result in enough confidence or overall return to provide great value to clients. Further development, tuning, and testing of the model is required in order to release the product to our clients.
 
 ---
 
