@@ -61,7 +61,7 @@ The steps for model development were as follows:
 
 8. Making Predictions using closing prices
 
-![Predicted price vs closing price](lstm.jpeg)
+![Predicted price vs closing price](lstmn.jpeg.jpeg)
 
 9. Create a signal based on predictions
 ----
