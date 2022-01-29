@@ -60,6 +60,7 @@ The steps for model development were as follows:
 7. Evaluate Model Performance
 
 8. Making Predictions using closing prices
+![Predicted price vs closing price](lstm.jpeg)
 
 9. Create a signal based on predictions
 ----
