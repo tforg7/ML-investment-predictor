@@ -5,41 +5,43 @@
 ## Introduction
 ### Our Task 
 
-We are a new team within an investment firm looking to enter the CryptoCurrency space with a algorithmic trading package for our clients. Due to limited resources management has tasked our team with building & testing a Time Series & Neutral Network model in order to predict future performance. Then evaluate our models and draw general conclusions based on our performance. 
+We are a new team within an investment firm looking to enter the cryptocurrency space with an algorithmic trading package for our clients. Due to limited resources, management has tasked our team with building and testing Time Series and Neutral Network machine learning model to predict future prices and determine optimal times to buy and sell to maximize profits. After development of the model, it had to be evaluated to draw conclusions based on their performance. 
 
-For this Analysis we will need to answer: 
-1. Identify commonly traded Crypto currencies with reliable data   
-2. Create an Recurring Neural Network in order to gain a signal to trade on
-3. Create a Regression Anlysis to in order to gain a signal to trade on
+This analysis included the following steps:
+1. Identify commonly traded cryptocurrencies with reliable data   
+2. Create an Recurring Neural Network (RNN) in order to create a signal to trade on
+3. Create a Regression Anlysis in order to create a signal to trade on
 4. Merge signals from individual models to create a unique signal 
-5. Backtest merged signal model to see how it performs in compairson to the indvidual models 
+5. Backtest the merged signal model to see how it performs in compairson to the indvidual models 
 
 ---
 
 ## Data Sources 
-Data for this presentaion was found using:
-1. BTC - https://api.kucoin.com/api/v1/market/candles?type={frequency}&symbol={ticker}-USDT&startAt={epoch}&endAt=0&limit=10000
+For this analysis, Bitcoin (BTC)  was chosen as the cryptocurrency for hte models. Hourly BTC data was pulled from the Kucoin API  at the follwoing link: https://api.kucoin.com/api/v1/market/candles?type={frequency}&symbol={ticker}-USDT&startAt={epoch}&endAt=0&limit=10000. 
+
 ---
 ## Data Analysis
 
 ### Part 1. Neural Network - LSTM Model 
-Objective: Complete a LSTM model in order to make predictions that inform a signal 
+Objective: Develop an LSTM model based off hourly BTC closing prices in order to make predictions that create a signal to trade on.
 
-Location: DeepLearing_LSTM.ipynb
+Location in Repository: DeepLearing_LSTM.ipynb
+
+The steps for model development were as follows:
 
 1. Imports 
 
-2. API Call to Kucoin Exchange 
+2. API call to Kucoin Exchange 
 
-3. Data Cleaning 
+3. Data cleaning 
 
-4. Data Preparation
+4. Data preparation
     
     A. Prepare the training and testing data for the LSTM model.
    
     B. Use the window_data function to generate the X and y values for the model.
    
-    C. Split the data into 70% training and 30% testingApply the MinMaxScaler to the X and y values
+    C. Split the data into 70% training and 30% testing. Apply the MinMaxScaler to the X and y values.
     
     D. Reshape the X_train and X_test data for the model.
 
@@ -61,16 +63,20 @@ Location: DeepLearing_LSTM.ipynb
 ----
 
 ### Part 2. Anlysis of Time Series Regression
-Objective complete a regression analysis in order to gain a buy/sell signal 
+Objective: Develop a linear regression analysis in order to create a signal to trade on.
 
-Location: TimeSerie_LinearRegression.ipynb
+Location in Repository: TimeSerie_LinearRegression.ipynb
 
-Steps 
-1. Inital Imports
-2. API Call to Kucoin Exchange
+The steps for model development were as follows: 
+
+1. Imports
+
+2. API call to Kucoin Exchange 
+
 3. Complete a Hodrick-Prescott Filter in order to filter out short-term fluctuations & decompose the time series into trend and non-trend componets 
 ![Trend](TR.jpeg)
 ![noise](N_O.jpeg)
+
 4. Regression Analysis: Seasonal Effects with Sklearn Linear Regression
     
     A. Data Preparation
@@ -88,79 +94,66 @@ Steps
 
 7. In-Sample Performance 
 
-8. Create a Dataframe with Hours as the index & predicted returns 
+8. Create a Dataframe with hours as the index & predicted returns 
 
     A. Calculate the differnce between prior hour and current hour predicted returns 
 
 9. Create a signal based on the difference in hourly predicted returns where a difference greater than or equal to zero is a buy and less that zero is a sell
 
-10. Signal is now completed
-
-11. Note for implications: Additonal backtesting can be done by calulating: Entry/Exit, Position, Entry/Exit Position, Portfolio Holdings, Portfolio Cash, Portfolio Total,	Portfolio Daily Returns,Portfolio Cumulative Returns
-
 ----
-## Part 3. Anlysis of Combined Porfolios
-Objective: Merge signals from individual models to create a unique signal 
 
-Location: PredictionsModels_n_Signal_BRK.ipynb
+## Part 3. Anlysis of Combined Porfolios
+
+Objective: Merge signals from individual models to create a merged signal model with a unique signal
+
+Location in Repository: PredictionsModels_n_Signal_BRK.ipynb
 
 1. Imports 
 
-2. Import Data from previous regression & RNN: In this case we are using the X_test as start data for our predictions. All data from API 
+2. Import testing data from previous regression and RNN LSTM models by reading in the csv files 
 
-    A. Adapted X data for the different models 
+3. Load in the LSTM model via the pickle library, and recreate the predictions on the testing data
 
-    B. Output data y_test 
+4. Load and predict Linear Regression model via the pickle library, and recreate the predictions on the testing data
 
-    C. Scale data for RNN
+5. Merge signals from different models to a unique signal by adding them together
 
-3. Load and predict LSTM model
+    A. Merged signal: sell = -1, hold = 0,  and buy = 1
 
-4. Load and predict Linear Regression model
+    B. Create a column with the difference (delta) of the merged signal. The first value of the delta column was hardcoded as 1 to provide the ability to buy if the signal advises this at the first time point.
 
-5. Merge signals from different models to an unique signal
+    C. Create a buy/sell "switch" column which would tell the merged signal model whether it can buy or sell at each time point. No more than one buy or one sell can occur in direct succession. 
 
-    A. Strategy : -1 sell, 0 hold,  1 buy (on signals)
+    D. Create the "Action" column to document the FINAL OUTPUT action (i.e., buy, sell, or hold) of the merged signal model.
 
-    B. Create column with difference (delta) of the cumulative signal. The first value of the delta column is hardcoded as 1 to provide the ability to buy if the signal advises this at time zero
+6. Use a function to take in the final output signal of the merged signal model to minimize the number of buys & sells (i.e., once a buy happens. another buy can only occur after a sell occurs). The function consisted of the following parts for each time point (i.e. row in the DataFrame):
 
-    C. Create the buy/sell switch column and set to NaN as a placeholder for now.
+    A. Create buy and sell "switch" components to compare to the Action Switch in each row
 
-    D. Create the "Action" column to document the FINAL OUTPUT action (i.e., buy, sell, or hold) that should be taken based on the signal. Initially set to NaN as placeholder for now.
+    B. Set a variable for the "switch" that can be updated after each loop through the function to determine how the buy/sell "switch" should change. Initially set switch to 1 (i.e., buy) at the first time point because a buy must occur first after the start of the time series. Action Switch = 1 means "can buy", and Action Switch = 0 means "can sell."
 
-6. Define function to determine what action to take while also minimizing the number of buys & sells (i.e., once a buy happens. another buy can only occur after a sell occurs).
+    C. Run through various "if" statements based on the conditions to determine whether the action should be a buy (2), sell (0), or hold (1). Flip the "switch" as necessary, based on the action that occurs.
 
-    A. Create buy and sell switch components to compare to the Action Switch in each row
+7. Plot the portfolio value of the merged signal model with that of the two individual models to compare performance.
 
-    B. Set a variable for the switch that can be updated after each run through the if statements to determine how the buy/sell switch should change. Initially set switch to 1 (i.e., buy) at time point zero because a buy must occur first after the start of the time series. Action Switch = 1 means "can buy", and Action Switch = 0 means "can sell" as defined above.
+    ![bokeh](bokeh_plot.jpeg)
 
-    C. Run through if statements based on the conditions to determine whether the action should be a buy (2), sell (0), or hold (1)
-
-     * First look at the condition when a sell is possible according to the switch
-    * Change the buy/sell switch to a "can buy" since a sell has now occurred
-
-    * Second look at the condition when a buy is possible according to the switch
-
-    * Change the buy/sell switch to a "can sell" since a buy has now occurred. action_switch = can_sell_switch
-
-    * Finally look at the condition when a hold is needed due to no change in the signal from the previous time point
-7. Test Final Signal
-![bokeh](bokeh_plot.jpeg)
 ----
+
 ## Part 4. Backtesting 
 
-Location backtesting code was established in a seperate workbook "Backtesting.py" then summarized in "PredictionsModels_n_Signal_BRK.ipynb"
+Location in Repository: Backtesting functions stored in "Backtesting.py", with analysis in in "PredictionsModels_n_Signal_BRK.ipynb"
 
-Below are the steps to estabish back testing code. 
+Below are the steps to estabish and perform backtesting. 
 
-1. Create Datframe with Predicted Returns, Difference, and Singal
+1. Create Dataframe with Predicted Returns, Difference, and Singal
 
 2. Calculate the Entry/Exit position 
 
 3. Calculate evaluation metrics and add them to the dataframe 
-    A. Set initial capital
+    A. Set initial capital as $10,000,000. This was set very high to avoid situations where no captial remained due to potential losses from trades.
 
-    B. Set the share size
+    B. Set the share size as 50 BTC.
 
     C. Multiply the close price by the number of shares held, or the Position
 
@@ -174,7 +167,7 @@ Below are the steps to estabish back testing code.
 
     H. Print to check Dataframe
 
-4. Create an hvplot to Visualize the Dataframe 
+4. Create a plot of the DataFrame to visualize the data using the following steps:
 
     A. Visualize exit position relative to total portfolio value
 
@@ -184,14 +177,13 @@ Below are the steps to estabish back testing code.
 
     D. Overlay the plots
 
-    E. Plot
-
 5. Create a dataframe of summary statistics 
     "Annualized Return",
     "Cumulative Returns",
     "Annual Volatility",
     "Sharpe Ratio",
     "Sortino Ratio"
+
 6. Calculate annualized return
 
 7. Calculate cumulative return
@@ -202,13 +194,14 @@ Below are the steps to estabish back testing code.
 
 10. Calculate Sortino ratio 
 
-
 11. Summarized statistics 
-![ratio](Hold.jpeg)
 
-12. Create a evaluation dataframe to evaluate the profit and loss of each transaction 
-    A.  # Initialize trade evaluation DataFrame 
-        "CURRENCY",
+    ![ratio](Hold.jpeg)
+
+12. Create an evaluation dataframe to evaluate the profit and loss of each transaction 
+    
+    A. Initialize trade evaluation DataFrame 
+        "Currency",
         "Entry Date",
         "Exit Date",
         "Shares",
@@ -218,49 +211,42 @@ Below are the steps to estabish back testing code.
         "Exit Portfolio Holding",
         "Profit/Loss"
     
-    B. # Loop through signal DataFrame. 
+    B. Loop through signal dataframe. 
     
-    C. If Entry/Exit is 1, set entry trade metrics Else if Entry/Exit is -1, set exit trade metrics and calculate profit. 
+    C. If Entry/Exit is 1, set entry trade metrics, but if the Entry/Exit is -1 then set exit trade metrics and calculate profit. 
     
-    D.Then append the record to the trade evaluation DataFrame
-
-    C. Print to check dataframe 
-
-13. Summarized backtesting in "PredictionsModels_n_Signal_BRK.ipynb"
+    D. Append the record to the trade evaluation dataframe 
 
 --- 
 
 ## Conclusions & Results 
 
-Test Results
+### Test Results:
 
 After merging the signals from the indiviual models we executed a model using an inital investment of $10,000,000 and a share size of 50. Here are our results:
 
-Annualized return of 0.4% outperformed the indivual Time Serier Regression, LSTM models, and buy and hold position. 
+* Annualized return (0.4%) and cumulative return (0.5%) of the combined signal model outperformed the individual Time Series Regression, LSTM model, and buy and hold position. Although the combined signal model outperformed the others, its returns are very low, without taking into account transaction costs.
 
-Cummulative Returns of 0.5% outperformed the indivual Time Serier Regression, LSTM models, and buy and hold position. 
+* Annual Volatility of 1.67% resulted in the less volatility than the individual Time Series Regression, LSTM model, and buy and hold position.
 
-Annual Volatility of 1.67% resulted in the less volatility than the indivual Time Serier Regression, LSTM models, and buy and hold position. 
+* Sharpe ratio of 0.28 for the combined signal model resulted in a greater return in excess of the risk free rate than the indivual Time Serier Regression, LSTM models, and buy and hold position. 
 
-Sharpe ratio of .28 resulted in a greater return when compared to the risk free rate than the indivual Time Serier Regression, LSTM models, and buy and hold position. 
+* Sortino ratio of 0.44 resulted in a greater return when taking into account only the down side risk of our investment than the individual Time Series Regression, LSTM model, and buy and hold position.
 
-Sortino ratio of .44 resulted in a greater return when taking into account only the down side risk of our investment than the indivual Time Serier Regression and LSTM models. 
-
-Overall after analysing the back testing results our recomendation is to not go to market with our model in its current state. Our results, while sufficent when compared to our indicual models, do not result in enough confidence/overal return to provide greater value to clients. 
+Overall after analysing the back testing results, our recomendation is to not go to market with our combined signal model in its current state. Our results, while sufficent when compared to our individual models, does not result in enough confidence or overall return to provide great value to clients. Further development, tuning, and testing of the model is required in order to release teh product to our clients.
 
 ---
 
 ## Implications 
-In a real life scienero: 
+To improve model performance, we could look at the following options:
 
 * Explore the use of indicators to better refine our models. 
-* Incorporating weights in the way we calculate our signals 
-* Use different metrics for determining our signals
-* Explored using less volitile assets such as stock or bonds. 
-* Exploring was to automate how to change the amount sold in each transaction 
-* Using a larger data set 
-* Using days instead of Hours. Hours were used to filter out dip in 2020. 
+* Incorporate weights in the calculations of the signals. 
+* Use different metrics for determining the signals.
+* Explore using less volitile assets such as stocks or bonds. 
+* Explore ways to change the amount bought/sold in each transaction. 
+* Use a larger data set.
+* Use daily closing prices instead of hourly. Hourly data was used in this case ilter out the volatility in the 2020 data.
 
-* Potential Future State: Incorporating Indicators & Natural Language Processing 
+A potential future state of the model, incorporating indicators and natural language processing, could be as shown below.
 ![Thomas's Genius](model.jpeg)
-
