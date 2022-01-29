@@ -120,7 +120,7 @@ Location in Repository: PredictionsModels_n_Signal_BRK.ipynb
 
 5. Merge signals from different models to a unique signal by adding them together
 
-    A. Merged signal: sell = -1, hold = 0,  and buy = 1
+    A. Merged signal: sell = 0, hold = 1,  and buy = 2
 
     B. Create a column with the difference (delta) of the merged signal. The first value of the delta column was hardcoded as 1 to provide the ability to buy if the signal advises this at the first time point.
 
