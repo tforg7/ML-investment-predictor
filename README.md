@@ -14,7 +14,7 @@ This analysis included the following steps:
 4. Merge signals from individual models to create a unique signal 
 5. Backtest the merged signal model to see how it performs in compairson to the indvidual models
 
-![Project diagram](schema.png)
+![Project diagram](schema.jpeg)
 
 ---
 
