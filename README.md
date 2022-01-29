@@ -12,7 +12,9 @@ This analysis included the following steps:
 2. Create an Recurring Neural Network (RNN) in order to create a signal to trade on
 3. Create a Regression Anlysis in order to create a signal to trade on
 4. Merge signals from individual models to create a unique signal 
-5. Backtest the merged signal model to see how it performs in compairson to the indvidual models 
+5. Backtest the merged signal model to see how it performs in compairson to the indvidual models
+
+![Project diagram](schema.jpeg)
 
 ---
 
