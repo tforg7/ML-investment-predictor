@@ -53,7 +53,7 @@ The steps for model development were as follows:
 
     B. Compile the model
 
-    C.Fit the model to the training data
+    C. Fit the model to the training data
 
 6. Summarize the model
 
@@ -85,11 +85,11 @@ The steps for model development were as follows:
     
     A. Data Preparation
     
-    B.Lagged Returns
+    B. Lagged Returns
 
-    C.Train Test Split
+    C. Train Test Split
 
-    D.Linear Regression Model
+    D. Linear Regression Model
 
 5. Make predictions using the Testing Data
 ![noise](Pre.jpeg)
