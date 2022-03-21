@@ -14,7 +14,7 @@ This analysis included the following steps:
 4. Merge signals from individual models to create a unique signal 
 5. Backtest the merged signal model to see how it performs in comparison to the individual models
 
-![Project diagram](schema.jpeg)
+![Project diagram](./Screenshots/schema.jpeg)
 
 ---
 
@@ -61,7 +61,7 @@ The steps for model development were as follows:
 
 8. Making Predictions using closing prices
 
-![Predicted price vs closing price](lstmn.jpeg)
+![Predicted price vs closing price](./Screenshots/lstmn.jpeg)
 
 9. Create a signal based on predictions
 ----
@@ -78,8 +78,8 @@ The steps for model development were as follows:
 2. API call to Kucoin Exchange 
 
 3. Complete a Hodrick-Prescott Filter to filter out short-term fluctuations & decompose the time series into trend and non-trend components 
-![Trend](TR.jpeg)
-![noise](N_O.jpeg)
+![Trend](./Screenshots/TR.jpeg)
+![noise](./Screenshots/N_O.jpeg)
 
 4. Regression Analysis: Seasonal Effects with Sklearn Linear Regression
     
@@ -92,7 +92,7 @@ The steps for model development were as follows:
     D. Linear Regression Model
 
 5. Make predictions using the Testing Data
-![noise](Pre.jpeg)
+![noise](./Screenshots/Pre.jpeg)
 
 6. Out-of-Sample Performance
 
@@ -140,7 +140,7 @@ Location in Repository: PredictionsModels_n_Signal_BRK.ipynb
 
 7. Plot the portfolio value of the merged signal model with that of the two individual models to compare performance.
 
-    ![bokeh](bokeh_plot.jpeg)
+    ![bokeh](./Screenshots/bokeh_plot.jpeg)
 
 ----
 
@@ -200,7 +200,7 @@ Below are the steps to establish and perform backtesting.
 
 11. Summarized statistics 
 
-    ![ratio](Hold.jpeg)
+    ![ratio](./Screenshots/Hold.jpeg)
 
 12. Create an evaluation dataframe to evaluate the profit and loss of each transaction 
     
@@ -253,4 +253,4 @@ To improve model performance, we could look at the following options:
 * Use daily closing prices instead of hourly. Hourly data was used in this case to filter out the volatility in the 2020 data.
 
 A potential future state of the model, incorporating indicators and natural language processing, could be as shown below.
-![Thomas's Genius](model.jpeg)
+![Thomas's Genius](./Screenshots/model.jpeg)
